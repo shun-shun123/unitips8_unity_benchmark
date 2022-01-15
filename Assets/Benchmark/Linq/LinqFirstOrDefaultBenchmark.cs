@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 
-namespace UniTips.Benchmark.Collections
+namespace UniTips.Benchmark.Linq
 {
-    public class ListSimpleCreateNewInstanceBenchmark : BenchmarkMonoBehaviour
+    public class LinqFirstOrDefaultBenchmark : BenchmarkMonoBehaviour
     {
         private int size;
+
+        private int[] data;
 
         public override IEnumerator PreSetup(IBenchmarkContext context)
         {
@@ -15,15 +17,13 @@ namespace UniTips.Benchmark.Collections
             {
                 size = paramsContext.TryCount;
             }
+
+            data = Enumerable.Range(0, size).ToArray();
         }
 
         public override void Benchmark()
         {
-            var list = new List<int>();
-            for (var i = 0; i < size; i++)
-            {
-                list.Add(i);
-            }
+            var query = Enumerable.FirstOrDefault(data, i => i == size - 1);
         }
 
         public override void CleanUp()

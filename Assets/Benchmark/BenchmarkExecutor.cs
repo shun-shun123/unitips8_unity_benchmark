@@ -18,13 +18,18 @@ namespace UniTips.Benchmark
         [SerializeField]
         private Button executeButton;
 
+        [SerializeField]
+        private int fpsCount;
+
         private void Start()
         {
+            Application.targetFrameRate = fpsCount;
+            
             var options = benchmarkDropdown.options;
             options.Clear();
             foreach (var benchmark in benchmarkMonoBehaviours)
             {
-                options.Add(new Dropdown.OptionData(benchmark.BenchmarkTitle));
+                options.Add(new Dropdown.OptionData(benchmark.BenchmarkTitle.Substring(BenchmarkMonoBehaviour.PROFILER_PREFIX.Length)));
             }
             benchmarkDropdown.RefreshShownValue();
             
@@ -67,7 +72,7 @@ namespace UniTips.Benchmark
             {
                 var paramContext = new BenchmarkMonoBehaviour.ParamsContext(size);
                 yield return benchmarkMonoBehaviour.PreSetup(paramContext);
-                Profiler.BeginSample(benchmarkMonoBehaviour.BenchmarkTitle);
+                Profiler.BeginSample(benchmarkMonoBehaviour.BenchmarkTitle + $"_{size}");
                 {
                     benchmarkMonoBehaviour.Benchmark();
                 }

@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.shunsuke.fastlinq": {
+      "version": "https://github.com/shun-shun123/FastLinq.git?path=src/FastLinq/Assets/Plugins/FastLinq",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "aba62996331527536dc3376e8eb987c3909142bf"
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.7",
       "depth": 0,

@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace UniTips.Benchmark.Collections
 {
-    public class ListSimpleCreateNewInstanceBenchmark : BenchmarkMonoBehaviour
+    public class ListCreateNewInstanceWithCapacityBenchmark : BenchmarkMonoBehaviour
     {
         private int size;
 
@@ -19,7 +19,7 @@ namespace UniTips.Benchmark.Collections
 
         public override void Benchmark()
         {
-            var list = new List<int>();
+            var list = new List<int>(size);
             for (var i = 0; i < size; i++)
             {
                 list.Add(i);

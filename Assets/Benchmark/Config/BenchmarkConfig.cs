@@ -9,27 +9,14 @@ namespace UniTipsBenchmark.Benchmark.Config
             UnmanagedResourceGC,
             FullGC
         }
-
-        public enum Iteration
-        {
-            Short = 1,
-            Default = 10,
-            Long = 100,
-        }
         
         public static PreSetupAction PreSetup { get; }
 
-        public static int IterationCount { get; }
-        
-        public static bool MemoryDiagnoser { get; }
-
-        public static int[] Size = {128, 512, 1024};
+        public static int[] Size = {128, 4096, 4096 * 16};
 
         static BenchmarkConfig()
         {
             PreSetup = PreSetupAction.FullGC;
-            IterationCount = (int) Iteration.Default;
-            MemoryDiagnoser = true;
         }
     }
 }
